@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "Module to easily open and manage popups",
   "dependencies": {
+    "com.divineskies.tools": "1.0.0",
     "com.divineskies.modulecore": "1.0.0",
     "com.divineskies.resourcemanagementmodule" : "1.0.0",
 	"com.divineskies.uianimationsmodule" : "1.0.0"
