@@ -1,0 +1,14 @@
+{
+  "name": "com.divineskies.modulecore",
+  "displayName": "DS Module Core",
+  "version": "1.0.0",
+  "description": "Module Core used for central logic.",
+  "dependencies": {
+    "com.divineskies.tools": "1.0.0"
+  },
+  "relatedPackages": {},
+  "repository": {
+    "url": "https://github.com/Stachel2904/DS_Backbone.git?path=/ModuleCore",
+    "type": "git"
+  }
+}
