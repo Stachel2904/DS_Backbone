@@ -1,0 +1,14 @@
+{
+  "name": "com.divineskies.tools",
+  "displayName": "DS Tools",
+  "version": "1.0.0",
+  "description": "Common used functions and classes, that are not project specific",
+  "dependencies": {
+  },
+  "relatedPackages": {
+  },
+  "repository": {
+    "url": "https://github.com/Stachel2904/DS_Backbone.git?path=/Tools",
+    "type": "git"
+  }
+}
