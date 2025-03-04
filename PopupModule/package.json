@@ -1,0 +1,14 @@
+{
+  "name": "com.divineskies.popupmodule",
+  "displayName": "DS Popup Module",
+  "version": "1.0.0",
+  "description": "Module to easily open and manage popups",
+  "dependencies": {
+    "com.divineskies.modulecore": "1.0.0"
+  },
+  "relatedPackages": {},
+  "repository": {
+    "url": "https://github.com/Stachel2904/Backbone/PopupModule.git",
+    "type": "git"
+  }
+}
