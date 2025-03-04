@@ -23,8 +23,9 @@ namespace DivineSkies.Modules.Core
                 return _constantModules;
             }
 
-            List<Type> constantModules = new List<Type>(ConstantModules);
+            List<Type> constantModules = new List<Type>();
             constantModules.Add(typeof(Logging.Log));
+            constantModules.AddRange(ConstantModules);
             _constantModules = constantModules.Distinct().ToArray();
 
             return _constantModules;
