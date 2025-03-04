@@ -1,0 +1,17 @@
+{
+    "name": "DivineSkies.UiAnimationsModule",
+    "rootNamespace": "DivineSkies.UiAnimationsModule",
+    "references": [
+        "GUID:326d67a062d8dd047a58bf1a70526d72",
+        "GUID:ca52d05b76b2a144c9e946dd79c41433"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

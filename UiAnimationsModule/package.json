@@ -1,0 +1,15 @@
+{
+  "name": "com.divineskies.uianimationsmodule",
+  "displayName": "DS Ui Animations Module",
+  "version": "1.0.0",
+  "description": "Basic Ui Animations",
+  "dependencies": {
+    "com.divineskies.tools": "1.0.0",
+    "com.divineskies.modulecore": "1.0.0"
+  },
+  "relatedPackages": {},
+  "repository": {
+    "url": "https://github.com/Stachel2904/DS_Backbone.git?path=/UiAnimationsModule",
+    "type": "git"
+  }
+}
