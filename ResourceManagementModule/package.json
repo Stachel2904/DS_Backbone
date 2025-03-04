@@ -3,7 +3,8 @@
   "displayName": "DS Resource Management Module",
   "version": "1.0.0",
   "description": "Module to load Resources from Resources Folder. Including Caching.",
-  "dependencies": {
+  "dependencies": {	  
+    "com.divineskies.modulecore": "1.0.0"
   },
   "relatedPackages": {},
   "repository": {
