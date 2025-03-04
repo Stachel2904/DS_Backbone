@@ -1,0 +1,14 @@
+{
+  "name": "com.divineskies.resourcemanagementmodule",
+  "displayName": "DS Resource Management Module",
+  "version": "1.0.0",
+  "description": "Module to load Resources from Resources Folder. Including Caching.",
+  "dependencies": {
+    "com.divineskies.modulecore": "1.0.0"
+  },
+  "relatedPackages": {},
+  "repository": {
+    "url": "https://github.com/Stachel2904/DS_Backbone.git?path=/ResourceManagementModule",
+    "type": "git"
+  }
+}
