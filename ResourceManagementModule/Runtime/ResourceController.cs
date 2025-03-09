@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace DivineSkies.Modules.ResourceManagement
     /// </summary>
     public class ResourceController : ModuleBase<ResourceController>
     {
-        private readonly Dictionary<string, UnityEngine.Object> _loadedResources = new();
+        private readonly Dictionary<string, Object> _loadedResources = new();
         private readonly Dictionary<string, Component> _loadedPrefabs = new();
         
         public override void OnSceneFullyLoaded()
@@ -18,16 +17,22 @@ namespace DivineSkies.Modules.ResourceManagement
             ClearCache();
         }
 
+        /// <summary>
+        /// Can be cleared manually but will be cleared automatically after every scene load
+        /// </summary>
         public void ClearCache()
         {
             _loadedResources.Clear();
             _loadedPrefabs.Clear();
         }
 
-        public T LoadResource<T>(string name) where T : UnityEngine.Object
+        /// <summary>
+        /// Load a resource from "Resources/{typeof(T)}/{name}" (like sprites or audio files)
+        /// </summary>
+        public T LoadResource<T>(string name) where T : Object
         {
             string path = typeof(T).ToString().Split('.').Last() + "/" + name;
-            if (!_loadedResources.TryGetValue(path, out UnityEngine.Object resource))
+            if (!_loadedResources.TryGetValue(path, out Object resource))
             {
                 resource = Resources.Load<T>(path);
                 if (resource == null || resource is not T)
@@ -41,6 +46,9 @@ namespace DivineSkies.Modules.ResourceManagement
             return (T)resource;
         }
 
+        /// <summary>
+        /// Loads a prefab from "Resources/Prefabs/{localPath}/{typeof(T)}, creates a copy of it and attaches it to "parent"
+        /// </summary>
         public T LoadAndInstatiatePrefab<T>(Transform parent = null, string localPath = "") where T : Component
         {
             string path = "Prefabs/" + localPath + typeof(T).ToString().Split('.').Last();
@@ -63,6 +71,9 @@ namespace DivineSkies.Modules.ResourceManagement
             return Instantiate((T)prefab, parent);
         }
 
-        public ResourceRequest LoadOnDemandResourceAsync<TObject>(string path) where TObject : UnityEngine.Object => Resources.LoadAsync<TObject>("OnDemand/" + path);
+        /// <summary>
+        /// Loads a ressource async from "Resources/OnDemand/{path}
+        /// </summary>
+        public ResourceRequest LoadOnDemandResourceAsync<TObject>(string path) where TObject : Object => Resources.LoadAsync<TObject>("OnDemand/" + path);
     }
 }

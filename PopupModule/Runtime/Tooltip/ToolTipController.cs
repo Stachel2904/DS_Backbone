@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DivineSkies.Modules.ResourceManagement;
+using DivineSkies.Modules.Popups.Internal;
 
 namespace DivineSkies.Modules.ToolTip
 {
@@ -23,13 +24,8 @@ namespace DivineSkies.Modules.ToolTip
 
         public override void Initialize()
         {
-            _display = GetTooltipDisplay();
+            _display = PopupController.Main.CreateToolTipDisplay();
             _display.gameObject.SetActive(false);
-        }
-
-        private ToolTipDisplay GetTooltipDisplay()
-        {
-            return ResourceController.Main.LoadAndInstatiatePrefab<ToolTipDisplay>();
         }
 
         internal void OnToolTipProviderHoverEnter(ToolTipProvider target)
@@ -126,6 +122,11 @@ namespace DivineSkies.Modules.ToolTip
             else if (_currentToolTipProvider.TryGetComponent(out Image image))
             {
                 ShowToolTip(image);
+            }
+
+            if(_display.gameObject.activeInHierarchy)
+            {
+                _display.transform.SetAsLastSibling();
             }
         }
     }

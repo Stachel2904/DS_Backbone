@@ -5,6 +5,7 @@ using DivineSkies.Tools.Extensions;
 using DivineSkies.Modules.ResourceManagement;
 using DivineSkies.Modules.Popups.Internal;
 using DivineSkies.Modules.Logging;
+using DivineSkies.Modules.ToolTip;
 
 namespace DivineSkies.Modules.Popups
 {
@@ -64,10 +65,11 @@ namespace DivineSkies.Modules.Popups.Internal
         internal TPopup GetPopup<TPopup>(bool createNew = false) where TPopup : PopupBase
         {
             if (!createNew && _createdPopups.TryFind(m => m.GetType() == typeof(TPopup) && !m.IsOpen, out PopupBase popup))
+            {
                 return popup as TPopup;
+            }
 
-            popup = ResourceController.Main.LoadAndInstatiatePrefab<TPopup>();
-            popup.transform.SetParent(_popupParent, false);
+            popup = ResourceController.Main.LoadAndInstatiatePrefab<TPopup>(_popupParent);
             _createdPopups.Add(popup);
             return (TPopup)popup;
         }
@@ -86,7 +88,11 @@ namespace DivineSkies.Modules.Popups.Internal
             _faderBackground.SetSiblingIndex(_popupParent.childCount - 2);
             _openPopups.Remove(popup);
             if (_openPopups.Count == 0)
+            {
                 _faderBackground.gameObject.SetActive(false);
+            }
         }
+
+        internal ToolTipDisplay CreateToolTipDisplay() => ResourceController.Main.LoadAndInstatiatePrefab<ToolTipDisplay>(_popupParent);
     }
 }
