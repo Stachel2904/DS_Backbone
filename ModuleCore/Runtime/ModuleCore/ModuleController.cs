@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DivineSkies.Tools.Extensions;
 using DivineSkies.Modules.Core;
 
 namespace DivineSkies.Modules
 {
     public class ModuleController : MonoBehaviour
     {
+        /// <summary>
+        /// This will be called after a scene changed (you can also use <see cref="ModuleBase.OnSceneFullyLoaded"/>)
+        /// </summary>
         public static event Action OnSceneChanged;
-
-
 
         private static ModuleController _self;
         private static ModuleHolderBase _holder;
+
         private readonly Dictionary<Type, ModuleBase> _constantModules = new();
         private readonly Dictionary<Type, ModuleBase> _sceneModules = new();
         private readonly List<ModuleBase> _uninitializedModules = new();
@@ -25,7 +26,9 @@ namespace DivineSkies.Modules
         internal static ModuleController Create(ModuleHolderBase holder)
         {
             if (_self != null)
+            {
                 return _self;
+            }
 
             _self = new GameObject("Modules").AddComponent<ModuleController>();
             DontDestroyOnLoad(_self.gameObject);
@@ -46,12 +49,22 @@ namespace DivineSkies.Modules
             StartCoroutine(InitializeAllUninitialized(callback));
         }
 
+        /// <summary>
+        /// Restarts the game. Loads scene Default Start and creates a new moduleController.
+        /// </summary>
         public static void Restart()
         {
+            foreach (ModuleBase module in _self._constantModules.Values.Concat(_self._sceneModules.Values))
+            {
+                module.BeforeUnregister();
+                module.PrintLog("unregistered");
+            }
+
             SceneManager.sceneLoaded -= _self.AfterSceneLoad;
-            Destroy(_self.gameObject);
-            Destroy(Camera.main.gameObject);
+            OnSceneChanged = null;
+            _holder = null;
             _self = null;
+            Destroy(_self.gameObject);
 
             SceneManager.LoadScene("DefaultStart");
         }
@@ -71,10 +84,16 @@ namespace DivineSkies.Modules
             return null;
         }
 
+        /// <summary>
+        /// If you set load Data on scene load, you may retrieve it from here
+        /// </summary>
         public static TLoadData GetLoadData<TLoadData>() where TLoadData : SceneLoadData => _self.sceneLoadData.OfType<TLoadData>().FirstOrDefault();
 
         #region module managing
 
+        /// <summary>
+        /// Use this to add a new module as scenemodule
+        /// </summary>
         public static void AddSubModule<TModule>() where TModule : ModuleBase
         {
             _self.AddModule(typeof(TModule), false);
@@ -143,7 +162,15 @@ namespace DivineSkies.Modules
 
                     yield return initRoutine.Current;
                 }
+
                 module.PrintLog("initialized");
+
+                if (module is ISceneModule sceneModule)
+                {
+                    sceneModule.Visualization.Initialize();
+                    sceneModule.Visualization.PrintLog(sceneModule + "-Visualization initialized");
+                }
+
                 loadingScreen?.ProgressLoading(i, modulesToInitialize.Length, module, 1);
             }
 

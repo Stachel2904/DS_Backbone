@@ -7,7 +7,6 @@ namespace DivineSkies.Modules.Core
     /// </summary>
     public class SceneModuleLoader : MonoBehaviour
     {
-        [HideInInspector]
-        public ModuleBase[] SceneModules => gameObject.GetComponents<ModuleBase>();
+        internal ModuleBase[] SceneModules => gameObject.GetComponents<ModuleBase>();
     }
 }

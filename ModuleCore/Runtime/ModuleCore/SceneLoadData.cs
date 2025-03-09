@@ -4,14 +4,17 @@ namespace DivineSkies.Modules.Core
 {
     public abstract class SceneLoadData
     {
-        public abstract Type ModuleType { get; }
+        internal abstract Type ModuleType { get; }
     }
 }
 
 namespace DivineSkies.Modules
 {
+    /// <summary>
+    /// Use sceneloadData to transport data through scenes
+    /// </summary>
     public abstract class SceneLoadData<TModule> : Core.SceneLoadData where TModule : Core.ModuleBase
     {
-        public override Type ModuleType => typeof(TModule);
+        internal sealed override Type ModuleType => typeof(TModule);
     }
 }

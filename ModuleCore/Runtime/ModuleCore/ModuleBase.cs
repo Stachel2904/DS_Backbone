@@ -10,6 +10,9 @@ namespace DivineSkies.Modules.Core
         /// </summary>
         public virtual int InitPriority => 1;
 
+        /// <summary>
+        /// Set this in async initialization to show progress on loading screen
+        /// </summary>
         public int LoadingProgress { get; protected set; }
 
         /// <summary>
@@ -36,12 +39,6 @@ namespace DivineSkies.Modules.Core
         /// </summary>
         public virtual void Initialize()
         {
-            if(this is ISceneModule module)
-            {
-                module.Visualization?.Initialize();
-            }
-
-            this.PrintLog("Initialized " + this);
         }
 
         /// <summary>
