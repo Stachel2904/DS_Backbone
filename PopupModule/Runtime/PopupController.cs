@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DivineSkies.Tools.Extensions;
-using DivineSkies.Modules;
 using DivineSkies.Modules.ResourceManagement;
 using DivineSkies.Modules.Popups.Internal;
+using DivineSkies.Modules.Logging;
 
 namespace DivineSkies.Modules.Popups
 {
@@ -47,6 +47,13 @@ namespace DivineSkies.Modules.Popups.Internal
             _faderBackground.localPosition = Vector3.zero;
             _faderBackground.localScale = Vector3.one;
             _faderBackground.gameObject.SetActive(false);
+
+            Log.Main.OnScreenMessagePrinted += DisplayLoggedMessage;
+        }
+
+        private void DisplayLoggedMessage(string message)
+        {
+            Popup.Create<NotificationPopup>(true).Init("Information", message);
         }
 
         public override void OnSceneFullyLoaded()
@@ -54,9 +61,6 @@ namespace DivineSkies.Modules.Popups.Internal
             ModuleController.GetLoadData<PopupLoadData>()?.OpenPopup();
         }
 
-        /// <summary>
-        /// This usage can be shortened with <see cref="Popup.Create{TPopup}(bool)"/>
-        /// </summary>
         internal TPopup GetPopup<TPopup>(bool createNew = false) where TPopup : PopupBase
         {
             if (!createNew && _createdPopups.TryFind(m => m.GetType() == typeof(TPopup) && !m.IsOpen, out PopupBase popup))

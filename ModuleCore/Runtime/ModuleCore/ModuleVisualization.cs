@@ -8,7 +8,7 @@ namespace DivineSkies.Modules
     /// </summary>
     public abstract class ModuleVisualization : MonoBehaviour
     {
-        [SerializeField] private Button _closeButton;
+        [SerializeField] protected Button _closeButton;
 
         internal void Initialize()
         {

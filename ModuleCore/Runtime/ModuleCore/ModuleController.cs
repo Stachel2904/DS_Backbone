@@ -70,7 +70,15 @@ namespace DivineSkies.Modules
         }
 
         public static bool Has<T>() where T : ModuleBase => Has(typeof(T));
-        public static bool Has(Type type) => _self._sceneModules.ContainsKey(type) || _self._constantModules.ContainsKey(type);
+        public static bool Has(Type type)
+        {
+            if(_self._sceneModules.ContainsKey(type) || _self._constantModules.ContainsKey(type))
+            {
+                return true;
+            }
+
+            return _self._constantModules.Values.Concat(_self._sceneModules.Values).Any(m => m.GetType().IsSubclassOf(type));
+        }
 
         public static T Get<T>() where T : ModuleBase => Get(typeof(T)) as T;
         public static ModuleBase Get(Type type)
@@ -80,8 +88,14 @@ namespace DivineSkies.Modules
                 return result;
             }
 
-            _self.PrintError(type + " is no loaded Module");
-            return null;
+            result = _self._constantModules.Values.Concat(_self._sceneModules.Values).FirstOrDefault(m => m.GetType().IsSubclassOf(type));
+
+            if (result == null)
+            {
+                _self.PrintError(type + " is no loaded Module");
+            }
+
+            return result;
         }
 
         /// <summary>

@@ -3,8 +3,11 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-namespace FEA.UI
+namespace DivineSkies.Modules.UI
 {
+    /// <summary>
+    /// This is a text that will be filled letter by letter
+    /// </summary>
     public class WritingTextMeshPro : TextMeshProUGUI
     {
         public static float DEFAULT_DELAY = 0.03f;
@@ -15,7 +18,10 @@ namespace FEA.UI
         private Action _callback;
         private bool _autoFinish;
 
-        public void SkipWriting()
+        /// <summary>
+        /// Calling this will instantly display text, skipping the letter-byletter animation
+        /// </summary>
+        public void EndWriting()
         {
             if(_runningWriting != null)
             {
@@ -27,6 +33,13 @@ namespace FEA.UI
             }
         }
 
+        /// <summary>
+        /// Starts writing a message letter-by-letter
+        /// </summary>
+        /// <param name="content">The Message to display</param>
+        /// <param name="delay"> if set < 0 <see cref="DEFAULT_DELAY"/> will be used</param>
+        /// <param name="writingFinishCallback">Will be called when writing is finished</param>
+        /// <param name="autoFinish">Should automatically finish or wait for call of <see cref="EndWriting"/></param>
         public void StartWriting(string content, float delay = -1, Action writingFinishCallback = null, bool autoFinish = true)
         {
             _autoFinish = autoFinish;

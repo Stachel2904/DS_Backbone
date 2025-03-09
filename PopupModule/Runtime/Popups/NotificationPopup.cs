@@ -5,55 +5,61 @@ using TMPro;
 
 namespace DivineSkies.Modules.Popups
 {
+    /// <summary>
+    /// Use this to display a simple message to inform the user
+    /// </summary>
     public class NotificationPopup : PopupBase
     {
         [SerializeField] protected TextMeshProUGUI _txtTitle, _txtContent;
         [SerializeField] protected Button _btnDefault;
 
-        protected Action _onClose;
         protected bool _isInitialized;
 
-        protected override void Awake()
-        {
-            base.Awake();
+        private Action _onClosed;
 
-            _btnDefault.onClick.AddListener(Close);
+        protected override void OnCreation()
+        {
+            base.OnCreation();
+
+            _btnDefault.onClick.AddListener(OnClickedDefaultButton);
         }
 
-        public virtual void Init(string title, string content, Action onClosed = null, bool openAfterwards = true)
+        /// <param name="title">The title to display in Popup</param>
+        /// <param name="content">The content displayed in Popup</param>
+        /// <param name="openAfterwards">Should instantly open after init?</param>
+        public virtual void Init(string title, string content, bool openAfterwards = true, Action onClosed = null)
         {
-            _onClose = onClosed;
-
             _txtTitle.text = title;
             _txtContent.text = content;
+            _onClosed = onClosed;
 
             _isInitialized = true;
 
             if (openAfterwards)
+            {
                 Open();
+            }
         }
 
-        public override void Open()
+        protected override void OnOpened()
         {
             if (!_isInitialized)
             {
                 this.PrintWarning("Please open AFTER calling 'Init()");
-                return;
             }
 
-            base.Open();
+            base.OnOpened();
         }
 
-        public void SilentClose()
+        protected virtual void OnClickedDefaultButton()
         {
-            base.Close();
+            Close();
         }
 
-        public override void Close()
+        protected override void OnClosed()
         {
-            base.Close();
-
-            _onClose?.Invoke();
+            base.OnClosed();
+            _onClosed?.Invoke();
         }
     }
 }

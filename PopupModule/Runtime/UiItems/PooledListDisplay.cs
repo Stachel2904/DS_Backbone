@@ -1,12 +1,15 @@
-using DivineSkies.Modules.ResourceManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using DivineSkies.Modules.ResourceManagement;
 
-namespace FEA.UI
+namespace DivineSkies.Modules.UI
 {
+    /// <summary>
+    /// Useful Class to Create and Pool Elements for Datas
+    /// </summary>
     public class PooledListDisplay<TItem, TData> where TItem : UiItemBase
     {
         private readonly Transform _wrapper;
@@ -16,6 +19,8 @@ namespace FEA.UI
 
         private TData[] _datas;
 
+        /// <param name="wrapper">In this transform will the items be created</param>
+        /// <param name="onUpdate"></param>
         public PooledListDisplay(Transform wrapper, Action<TItem, TData> onUpdate)
         {
             _wrapper = wrapper;
@@ -23,6 +28,10 @@ namespace FEA.UI
             _updateAction = onUpdate;
         }
 
+        /// <summary>
+        /// Use this to reset Data
+        /// </summary>
+        /// <param name="datas"></param>
         public void SetData(TData[] datas)
         {
             _datas = datas;
@@ -35,19 +44,24 @@ namespace FEA.UI
 
         public TData GetSpecificData(Predicate<TData> match) => _datas.FirstOrDefault(d => match(d));
 
+        /// <summary>
+        /// Force Refresh items (maybe data was changed from outside)
+        /// </summary>
         public void Refresh()
         {
             for (int i = 0; i < _datas.Length; i++)
             {
                 if(_children.Count <= i)
+                {
                     _children.Add(ResourceController.Main.LoadAndInstatiatePrefab<TItem>(_wrapper));
+                }
 
                 _updateAction?.Invoke(_children[i], _datas[i]);
             }
 
             while(_children.Count > _datas.Length)
             {
-                var child = _children[^1];
+                TItem child = _children[^1];
                 _children.Remove(child);
                 UnityEngine.Object.Destroy(child.gameObject);
             }

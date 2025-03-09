@@ -1,12 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DivineSkies.Modules.ResourceManagement;
 
 namespace DivineSkies.Modules.ToolTip
 {
+    /// <summary>
+    /// Register this module to implement tooltips for every gameobject that has a <see cref="ToolTipProvider"/>-Component
+    /// </summary>
     public class ToolTipController : ModuleBase<ToolTipController>
     {
-        private const float SHOWDELAY = .5f;
+        /// <summary>
+        /// Use this to fine tune the delay before tool tip appears
+        /// </summary>
+        public float ShowDelay = .5f;
+
         private ToolTipProvider _currentToolTipProvider;
         private ToolTipDisplay _display;
         private string _currentKey;
@@ -19,27 +27,31 @@ namespace DivineSkies.Modules.ToolTip
             _display.gameObject.SetActive(false);
         }
 
-        protected virtual ToolTipDisplay GetTooltipDisplay()
+        private ToolTipDisplay GetTooltipDisplay()
         {
-            return new GameObject("DefaultTooltip").AddComponent<ToolTipDisplay>();
+            return ResourceController.Main.LoadAndInstatiatePrefab<ToolTipDisplay>();
         }
 
-        public void OnToolTipProviderHoverEnter(ToolTipProvider target)
+        internal void OnToolTipProviderHoverEnter(ToolTipProvider target)
         {
             _currentToolTipProvider = target;
         }
 
-        public void OnToolTipProviderHoverExit(ToolTipProvider target)
+        internal void OnToolTipProviderHoverExit(ToolTipProvider target)
         {
             if (_currentToolTipProvider == target)
+            {
                 HideToolTip();
+            }
         }
 
         private void ShowToolTip(TextMeshProUGUI text)
         {
             int linkIndex = TMP_TextUtilities.FindIntersectingLink(text, Input.mousePosition, null);
             if (linkIndex < 0)
+            {
                 return;
+            }
             string linkID = text.textInfo.linkInfo[linkIndex].GetLinkID();
             ShowToolTip(linkID, false);
         }
@@ -49,6 +61,9 @@ namespace DivineSkies.Modules.ToolTip
             ShowToolTip(image.sprite.name, false);
         }
 
+        /// <summary>
+        /// Translate tooltip key to actual tooltip
+        /// </summary>
         protected virtual string TranslateKey(string key)
         {
             return "404: missing translation for " + key;
@@ -71,10 +86,12 @@ namespace DivineSkies.Modules.ToolTip
             toolTip.anchoredPosition = new Vector2(x, y);
         }
 
-        public void HideActiveTooltip()
+        internal void HideActiveTooltip()
         {
             if (_currentToolTipProvider != null)
+            {
                 HideToolTip();
+            }
         }
 
         private void HideToolTip()
@@ -88,22 +105,28 @@ namespace DivineSkies.Modules.ToolTip
         private void Update()
         {
             if (_currentToolTipProvider == null)
+            {
                 return;
+            }
 
-            if(_currentShowDelayProgress < SHOWDELAY)
+            if(_currentShowDelayProgress < ShowDelay)
             {
                 _currentShowDelayProgress += Time.deltaTime;
                 return;
             }
 
             if (_currentToolTipProvider.KeyOverride != string.Empty)
+            {
                 ShowToolTip(_currentToolTipProvider.KeyOverride, _currentToolTipProvider.UseKeyAsTooltip);
+            }
             else if (_currentToolTipProvider.TryGetComponent(out TextMeshProUGUI text))
+            {
                 ShowToolTip(text);
+            }
             else if (_currentToolTipProvider.TryGetComponent(out Image image))
+            {
                 ShowToolTip(image);
-            else
-                return;
+            }
         }
     }
 }

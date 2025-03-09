@@ -14,11 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.UI.dll</HintPath>
