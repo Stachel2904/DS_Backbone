@@ -13,14 +13,12 @@ namespace DivineSkies.Modules
     {
         public static event Action OnSceneChanged;
 
-        private static IEnumerable<ModuleBase> LoadedModules => _self._constantModules.Concat(_self._sceneModules);
 
-        private static ModuleHolderBase _holder;
 
         private static ModuleController _self;
-
-        private readonly List<ModuleBase> _constantModules = new();
-        private readonly List<ModuleBase> _sceneModules = new();
+        private static ModuleHolderBase _holder;
+        private readonly Dictionary<Type, ModuleBase> _constantModules = new();
+        private readonly Dictionary<Type, ModuleBase> _sceneModules = new();
         private readonly List<ModuleBase> _uninitializedModules = new();
         private readonly List<SceneLoadData> sceneLoadData = new();
 
@@ -58,15 +56,18 @@ namespace DivineSkies.Modules
             SceneManager.LoadScene("DefaultStart");
         }
 
-        public static bool Has<T>() where T : ModuleBase => LoadedModules.Any(m => m is T);
+        public static bool Has<T>() where T : ModuleBase => Has(typeof(T));
+        public static bool Has(Type type) => _self._sceneModules.ContainsKey(type) || _self._constantModules.ContainsKey(type);
 
-        public static T Get<T>() where T : ModuleBase
+        public static T Get<T>() where T : ModuleBase => Get(typeof(T)) as T;
+        public static ModuleBase Get(Type type)
         {
-            foreach (ModuleBase module in LoadedModules)
-                if (module is T result)
-                    return result;
+            if(_self._constantModules.TryGetValue(type, out ModuleBase result) || _self._sceneModules.TryGetValue(type, out result))
+            {
+                return result;
+            }
 
-            _self.PrintError(typeof(T) + " is no loaded Module");
+            _self.PrintError(type + " is no loaded Module");
             return null;
         }
 
@@ -76,38 +77,23 @@ namespace DivineSkies.Modules
 
         public static void AddSubModule<TModule>() where TModule : ModuleBase
         {
-            AddModule(typeof(TModule), false);
+            _self.AddModule(typeof(TModule), false);
         }
 
-        public static void LoadModule<TModule>(Action<TModule> onModuleLoaded) where TModule : ModuleBase
+        private ModuleBase AddModule(Type moduleType, bool isConstant)
         {
-            if (LoadedModules.ToArray().TryFind(m => m is TModule, out ModuleBase module))
-            {
-                onModuleLoaded?.Invoke(module as TModule);
-                return;
-            }
-
-            if (!_self._uninitializedModules.TryFind(m => m is TModule, out module))
-            {
-                module = AddModule(typeof(TModule), false);
-            }
-
-            if (module != null)
-            {
-                _self.StartCoroutine(_self.InitializeAllUninitialized(() => onModuleLoaded?.Invoke(module as TModule)));
-            }
-        }
-
-        private static ModuleBase AddModule(Type moduleType, bool isConstant)
-        {
-            ModuleBase result = LoadedModules.FirstOrDefault(m => m.GetType() == moduleType);
-            if (result != null || _self.gameObject.TryGetComponent(moduleType, out var comp))
+            if (Has(moduleType))
             {
                 _self.PrintWarning("Module of type " + moduleType.ToString() + " is already added");
                 return null;
             }
 
-            result = _self.gameObject.AddComponent(moduleType) as ModuleBase;
+            if (!_self.gameObject.TryGetComponent(moduleType, out Component comp) || comp is not ModuleBase result)
+            {
+                result = _self.gameObject.AddComponent(moduleType) as ModuleBase;
+            }
+
+            result.enabled = true;
             AddModule(result, isConstant);
             return result;
         }
@@ -115,9 +101,13 @@ namespace DivineSkies.Modules
         private static void AddModule(ModuleBase module, bool isConstant)
         {
             if (isConstant)
-                _self._constantModules.Add(module);
+            {
+                _self._constantModules.Add(module.GetType(), module);
+            }
             else
-                _self._sceneModules.Add(module);
+            {
+                _self._sceneModules.Add(module.GetType(), module);
+            }
             _self._uninitializedModules.Add(module);
             module.Register();
             module.PrintLog("registered");
@@ -125,29 +115,38 @@ namespace DivineSkies.Modules
 
         private void RemoveSceneModules()
         {
-            foreach (ModuleBase module in _sceneModules.ToArray())
+            foreach (ModuleBase module in _sceneModules.Values)
             {
                 module.BeforeUnregister();
-                _self._sceneModules.Remove(module);
                 module.PrintLog("unregistered");
-                if (module.gameObject == gameObject) //was temporarily added to modulecontroller game object, if not it will be destroyed with scene
-                {
-                    Destroy(module);
-                }
+                module.enabled = false;
             }
+
+            _self._sceneModules.Clear();
         }
 
         private IEnumerator InitializeAllUninitialized(Action callback)
         {
-            var modules = _uninitializedModules.OrderByDescending(m => m.InitPriority).ToArray();
+            ModuleBase[] modulesToInitialize = _uninitializedModules.OrderByDescending(m => m.InitPriority).ToArray();
             _uninitializedModules.Clear();
-            foreach (var module in modules)
+
+            LoadingScreen loadingScreen = Has<LoadingScreen>() ? Get<LoadingScreen>() : null;
+
+            for (int i = 0; i < modulesToInitialize.Length; i++)
             {
-                var initRoutine = module.InitializeAsync();
+                ModuleBase module = modulesToInitialize[i];
+                loadingScreen?.ProgressLoading(i, modulesToInitialize.Length, module, 0);
+                IEnumerator initRoutine = module.InitializeAsync();
                 while (initRoutine.MoveNext())
+                {
+                    loadingScreen?.ProgressLoading(i, modulesToInitialize.Length, module, module.LoadingProgress);
+
                     yield return initRoutine.Current;
+                }
                 module.PrintLog("initialized");
+                loadingScreen?.ProgressLoading(i, modulesToInitialize.Length, module, 1);
             }
+
             callback?.Invoke();
         }
         #endregion
@@ -160,7 +159,12 @@ namespace DivineSkies.Modules
         /// Loads the default start scene set in <see cref="BootstrapBase.StartScene"/>
         /// </summary>
         public static void LoadDefaultScene() => LoadScene(_self._defaultScene);
+
+        /// <summary>
+        /// Use this to load a scene
+        /// </summary>
         public static void LoadScene(Enum scene, params SceneLoadData[] loadData) => LoadScene(scene.ToString(), loadData);
+
         internal static void LoadScene(string scene, params SceneLoadData[] loadData)
         {
             _self.LoadSceneInternal(scene, loadData);
@@ -183,19 +187,11 @@ namespace DivineSkies.Modules
         private void AfterSceneLoad(Scene scene, LoadSceneMode mode)
         {
             this.PrintLog("--- Starting scene " + scene.name + " ---");
-            SceneModuleLoader loader;
 
-#if UNITY_2023_1_OR_NEWER
-            loader = FindFirstObjectByType<SceneModuleLoader>();
-#else
-            loader = FindObjectOfType<SceneModuleLoader>();
-#endif
-            if(loader != null)
+            SceneModuleLoader[] loader = FindObjectsByType<SceneModuleLoader>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            foreach (ModuleBase module in loader.SelectMany(moduleLoader => moduleLoader.SceneModules))
             {
-                foreach (var module in loader.SceneModules)
-                {
-                    AddModule(module, false);
-                }
+                AddModule(module, false);
             }
 
             this.PrintLog("Starting initialize routine");
@@ -204,14 +200,18 @@ namespace DivineSkies.Modules
 
         private IEnumerator OnSceneLoadedRoutine()
         {
-            var initRoutine = InitializeAllUninitialized(null);
+            IEnumerator initRoutine = InitializeAllUninitialized(null);
             while (initRoutine.MoveNext())
+            {
                 yield return initRoutine.Current;
+            }
 
             yield return null;
 
-            foreach (ModuleBase module in LoadedModules)
+            foreach (ModuleBase module in _constantModules.Values.Concat(_sceneModules.Values))
+            {
                 module.OnSceneFullyLoaded();
+            }
 
             OnSceneChanged?.Invoke();
         }

@@ -11,8 +11,14 @@ namespace DivineSkies.Modules.Core
         internal abstract Type[] GetSceneModuleTypes(string scene);
     }
 
+    /// <summary>
+    /// USe this class to map your modules needed in your game.
+    /// </summary>
     public abstract class ModuleHolder<TSceneName> : ModuleHolderBase where TSceneName : struct, Enum
     {
+        /// <summary>
+        /// Create an Array of all Modules that you always need in your game.
+        /// </summary>
         protected abstract Type[] ConstantModules { get; }
         private Type[] _constantModules;
 
@@ -42,6 +48,9 @@ namespace DivineSkies.Modules.Core
             return GetSceneModuleTypes(sceneName);
         }
 
+        /// <summary>
+        /// Return the modules you want to load in each scene
+        /// </summary>
         protected abstract Type[] GetSceneModuleTypes(TSceneName scene);
     }
 }
