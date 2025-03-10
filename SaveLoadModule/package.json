@@ -1,7 +1,7 @@
 {
   "name": "com.divineskies.saveloadmodule",
   "displayName": "DS Save Load Module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Module to easily save and load data",
   "dependencies": {
     "com.divineskies.modulecore": "1.0.0"

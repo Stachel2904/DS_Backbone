@@ -9,6 +9,9 @@ using DivineSkies.Modules.Core;
 
 namespace DivineSkies.Modules.SaveGame
 {
+    /// <summary>
+    /// This Module controls saving and loading user game data. Register it and use <see cref="SaveGameModuleBase{TSaveGame, TModule}"/> to use it
+    /// </summary>
     public class SaveGameController : ModuleBase<SaveGameController>
     {
         private class SaveGameData
@@ -37,7 +40,7 @@ namespace DivineSkies.Modules.SaveGame
             return Application.persistentDataPath + "/Data/" + fileName + ".json";
         }
 
-        public void RegisterDirtySavegame(ModuleBase parent, SaveGameBase data)
+        internal void RegisterDirtySavegame(ModuleBase parent, SaveGameBase data)
         {
             var path = GetPath(parent);
 
@@ -59,7 +62,7 @@ namespace DivineSkies.Modules.SaveGame
             entry.SerializedData = data.Serialize();
         }
 
-        public IEnumerator<T> Load<T>(ModuleBase parent) where T : SaveGameBase, new()
+        internal IEnumerator<T> Load<T>(ModuleBase parent) where T : SaveGameBase, new()
         {
             string path = GetPath(parent);
 
