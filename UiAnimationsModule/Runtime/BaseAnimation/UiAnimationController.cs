@@ -4,15 +4,22 @@ using DivineSkies.Tools.Extensions;
 
 namespace DivineSkies.Modules.UI
 {
+    /// <summary>
+    /// Use this to do simple ui animations like moving or rotating ui elements
+    /// </summary>
     public class UiAnimationController : ModuleBase<UiAnimationController>
     {
         private readonly List<BaseAnimationData> _runningAnimations = new List<BaseAnimationData>();
 
+        /// <summary>
+        /// Starts a new animation with all details stored in data object
+        /// </summary>
+        /// <param name="data"></param>
         public void StartNewBaseAnimation(BaseAnimationData data)
         {
             if (_runningAnimations.TryFind(a => a.AnimatedObject == data.AnimatedObject, out var previousAnim))
             {
-                SkipAnimation(data);
+                SkipAnimation(previousAnim);
             }
 
             _runningAnimations.Add(data);
@@ -40,10 +47,14 @@ namespace DivineSkies.Modules.UI
             progress = Mathf.Clamp(progress, 0, data.BackAndForth ? 2 : 1);
             progress = Interpolate(data.Interpolation, progress);
 
-            if(data.UseLocalPosition)
+            if (data.UseLocalPosition)
+            {
                 data.AnimatedObject.localPosition = data.StartTranslation + data.DeltaTranslation * progress;
+            }
             else
+            {
                 data.AnimatedObject.anchoredPosition = data.StartTranslation + data.DeltaTranslation * progress;
+            }
             data.AnimatedObject.localRotation = Quaternion.Euler(data.StartRotation + data.DeltaRotation * progress);
             data.AnimatedObject.localScale = data.StartScale + data.DeltaScale * progress;
             data.AnimatedObject.sizeDelta = data.StartSize + data.DeltaSize * progress;
@@ -63,10 +74,14 @@ namespace DivineSkies.Modules.UI
         {
             if(data.AnimatedObject != null)
             {
-                if(data.UseLocalPosition)
+                if (data.UseLocalPosition)
+                {
                     data.AnimatedObject.localPosition = data.StartTranslation + (data.BackAndForth ? Vector3.zero : data.DeltaTranslation);
+                }
                 else
+                {
                     data.AnimatedObject.anchoredPosition = data.StartTranslation + (data.BackAndForth ? Vector3.zero : data.DeltaTranslation);
+                }
                 data.AnimatedObject.localRotation = Quaternion.Euler(data.StartRotation + (data.BackAndForth ? Vector3.zero : data.DeltaRotation));
                 data.AnimatedObject.localScale = data.StartScale + (data.BackAndForth ? Vector3.zero : data.DeltaScale);
                 data.AnimatedObject.sizeDelta = data.StartSize + (data.BackAndForth ? Vector2.zero : data.DeltaSize);

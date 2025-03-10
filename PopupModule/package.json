@@ -1,13 +1,12 @@
 {
   "name": "com.divineskies.popupmodule",
   "displayName": "DS Popup Module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Module to easily open and manage popups",
   "dependencies": {
     "com.divineskies.tools": "1.0.0",
     "com.divineskies.modulecore": "1.0.0",
-    "com.divineskies.resourcemanagementmodule" : "1.0.0",
-	  "com.divineskies.uianimationsmodule" : "1.0.0"
+    "com.divineskies.resourcemanagementmodule" : "1.0.0"
   },
   "relatedPackages": {},
   "repository": {

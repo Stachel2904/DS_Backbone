@@ -10,7 +10,6 @@
     <ProjectReference Include="..\ModuleCore\ModuleCore.csproj" />
     <ProjectReference Include="..\ResourceManagementModule\ResourceManagementModule.csproj" />
     <ProjectReference Include="..\Tools\Tools.csproj" />
-    <ProjectReference Include="..\UiAnimationsModule\UiAnimationsModule.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,44 +1,50 @@
-using DivineSkies.Modules.Logging;
 using System.Collections;
 using UnityEngine;
 
-namespace DivineSkies.Modules.UI
+namespace DivineSkies.Modules.Popups
 {
-    public class ShowHideFader
+    internal class ShowHideFader
     {
-        public bool IsShowing { get; private set; }
+        internal bool IsShowing { get; private set; }
 
         private readonly MonoBehaviour _parent;
         private readonly CanvasGroup _target;
         private readonly float _fadeSpeed;
         private readonly bool _stayActive;
-
         private Coroutine _currentFadeRoutine;
 
-        public ShowHideFader(MonoBehaviour parent, float speed, CanvasGroup target = null, bool stayActive = false)
+        internal ShowHideFader(MonoBehaviour parent, float speed, CanvasGroup target = null, bool stayActive = false)
         {
             _parent = parent;
             _fadeSpeed = speed;
 
             _target ??= parent.GetComponent<CanvasGroup>();
             if (_target == null)
+            {
                 parent.PrintError("Fader couldn't find Canvas Group. Please set it manually instead.");
+            }
 
             _stayActive = stayActive;
         }
 
-        public void Toggle(bool show)
+        internal void Toggle(bool show)
         {
             if (IsShowing == show)
+            {
                 return;
+            }
 
             IsShowing = show;
 
             if(IsShowing && !_stayActive)
+            {
                 _parent.gameObject.SetActive(true);
+            }
 
             if (_currentFadeRoutine == null)
+            {
                 _currentFadeRoutine = _parent.StartCoroutine(FadeRoutine());
+            }
         }
 
         private IEnumerator FadeRoutine()
@@ -53,7 +59,9 @@ namespace DivineSkies.Modules.UI
             _target.alpha = Mathf.Clamp01(_target.alpha);
 
             if (!IsShowing && !_stayActive)
+            {
                 _parent.gameObject.SetActive(false);
+            }
 
             _currentFadeRoutine = null;
         }
