@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 
 namespace DivineSkies.Tools.Helper
 {
+    /// <summary>
+    /// USe this class so you dont have to implement unity interfaces
+    /// </summary>
     public class DragDropCaller : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         public event Action<PointerEventData> OnDragBegin;

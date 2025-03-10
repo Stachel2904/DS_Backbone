@@ -1,7 +1,7 @@
 {
   "name": "com.divineskies.tools",
   "displayName": "DS Tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Common used functions and classes, that are not project specific",
   "dependencies": {
   },

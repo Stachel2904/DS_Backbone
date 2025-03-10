@@ -6,6 +6,10 @@ namespace DivineSkies.Tools.Extensions
 {
     public static class MonoBehaviourExtensions
     {
+        /// <summary>
+        /// You can start a tick routine that will call the callback each tick
+        /// </summary>
+        /// <param name="frameTick">will give you delta time to alter progress, return x2 to call callback every 0.5s</param>
         public static Coroutine StartTickRoutine(this MonoBehaviour parent, Func<float, float> frameTick, Action callback)
         {
             return parent.StartCoroutine(TickRoutine(frameTick, callback));
@@ -22,6 +26,9 @@ namespace DivineSkies.Tools.Extensions
             callback?.Invoke();
         }
 
+        /// <summary>
+        /// Stop all coroutine if routine is not set
+        /// </summary>
         public static void StopTickRoutine(this MonoBehaviour parent, ref Coroutine routine)
         {
             if (routine == null)

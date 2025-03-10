@@ -4,16 +4,23 @@ namespace DivineSkies.Tools.Helper
 {
     public static class UiUtils
     {
+        /// <summary>
+        /// Wraps Text so it does not exceed the line limit
+        /// </summary>
         public static string WrapText(string source, int maxCharPerLine)
         {
             if (source.Length <= maxCharPerLine)
+            {
                 return source;
+            }
 
             string[] words = source.Split(' ');
 
             int longestWordLength = words.Max((s) => s.Length);
             if (longestWordLength > maxCharPerLine)
+            {
                 maxCharPerLine = longestWordLength;
+            }
 
             string currentLine = string.Empty;
             string result = string.Empty;
@@ -26,14 +33,19 @@ namespace DivineSkies.Tools.Helper
                 else
                 {
                     if (result.Length != 0)
+                    {
                         result += "\n";
+                    }
 
                     result += currentLine;
                     currentLine = words[i] + " ";
                 }
             }
+
             if (result.Length != 0)
+            {
                 result += "\n";
+            }
 
             result += currentLine;
 

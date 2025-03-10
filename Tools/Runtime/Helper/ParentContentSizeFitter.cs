@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace DivineSkies.Tools.Helper
 {
+    /// <summary>
+    /// Tranforms parent to self size each time self is updated
+    /// </summary>
     public class ParentContentSizeFitter : ContentSizeFitter
     {
         protected override void OnRectTransformDimensionsChange()
