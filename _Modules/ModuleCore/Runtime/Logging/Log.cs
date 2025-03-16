@@ -1,5 +1,5 @@
-﻿#if !UNITY_EDITOR
-using System;
+﻿using System;
+#if !UNITY_EDITOR
 using System.IO;
 #endif
 using UnityEngine;
