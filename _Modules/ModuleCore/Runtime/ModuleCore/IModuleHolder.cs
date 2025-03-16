@@ -39,7 +39,7 @@ namespace DivineSkies.Modules.Core
 
         internal sealed override Type[] GetSceneModuleTypes(string scene)
         {
-            if(!Enum.TryParse(scene, out TSceneName sceneName))
+            if (!Enum.TryParse(scene, out TSceneName sceneName))
             {
                 this.PrintError("Failed to find Scene named " + scene);
                 return Array.Empty<Type>();
