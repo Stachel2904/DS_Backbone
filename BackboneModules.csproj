@@ -18,22 +18,22 @@
 
   <ItemGroup>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>Libs\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>Libs\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>Libs\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>Libs\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>Libs\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>UnityProject\Backbone-Template-Project\Builds\Backbone-Template-Project_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>Libs\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 
