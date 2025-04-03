@@ -211,6 +211,20 @@ namespace DivineSkies.Modules
             _self.LoadSceneInternal(scene, loadData);
         }
 
+        internal static void OnExternalSceneLoaded()
+        {
+            Scene loadedScene = SceneManager.GetActiveScene();
+            _self.RemoveSceneModules();
+            _self.sceneLoadData.Clear();
+
+            foreach (Type moduleType in _holder.GetSceneModuleTypes(loadedScene.name))
+            {
+                _self.AddModule(moduleType, false);
+            }
+
+            _self.AfterSceneLoad(loadedScene, LoadSceneMode.Single);
+        }
+
         private void LoadSceneInternal(string scene, params SceneLoadData[] loadData)
         {
             RemoveSceneModules();
