@@ -11,6 +11,11 @@ namespace DivineSkies.Modules.Core
         public virtual int InitPriority => 1;
 
         /// <summary>
+        /// Set this to false if you want to keep the module for multiple scenes
+        /// </summary>
+        public virtual bool AutoUnregister => true;
+
+        /// <summary>
         /// Set this in async initialization to show progress on loading screen
         /// </summary>
         public int LoadingProgress { get; protected set; }

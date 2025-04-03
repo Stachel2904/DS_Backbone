@@ -1,7 +1,7 @@
 {
   "name": "com.divineskies.modulecore",
   "displayName": "DS Module Core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Module Core used for central logic.",
   "dependencies": {
     "com.divineskies.tools": "1.0.0"

@@ -1,4 +1,6 @@
-﻿using DivineSkies.Modules.Logging;
+﻿using DivineSkies.Modules;
+using DivineSkies.Modules.Logging;
+using System;
 
 public static class PrintExtesions
 {
@@ -41,6 +43,10 @@ public static class PrintExtesions
     private static void Print(object obj, string message, MessageType type = MessageType.Log)
     {
         string className = obj.GetType().ToString().Remove(0, obj.GetType().ToString().LastIndexOf('.') + 1);
+        if (!ModuleController.Has<Log>())
+        {
+            throw new NullReferenceException(message);
+        }
         Log.Main.PrintLogMessage(className, message, type);
     }
 }

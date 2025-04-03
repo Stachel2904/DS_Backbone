@@ -34,7 +34,6 @@ namespace DivineSkies.Modules
             DontDestroyOnLoad(_self.gameObject);
 
             _holder = holder;
-            SceneManager.sceneLoaded += _self.AfterSceneLoad;
 
             return _self;
         }
@@ -60,7 +59,6 @@ namespace DivineSkies.Modules
                 module.PrintLog("unregistered");
             }
 
-            SceneManager.sceneLoaded -= _self.AfterSceneLoad;
             OnSceneChanged = null;
             _holder = null;
             _self = null;
@@ -148,14 +146,14 @@ namespace DivineSkies.Modules
 
         private void RemoveSceneModules()
         {
-            foreach (ModuleBase module in _sceneModules.Values)
+            foreach (ModuleBase module in _sceneModules.Values.Where(m => m.AutoUnregister).ToArray())
             {
                 module.BeforeUnregister();
                 module.PrintLog("unregistered");
                 module.enabled = false;
-            }
 
-            _self._sceneModules.Clear();
+                _sceneModules.Remove(module.GetType());
+            }
         }
 
         private IEnumerator InitializeAllUninitialized(Action callback)
@@ -236,17 +234,28 @@ namespace DivineSkies.Modules
                 AddModule(moduleType, false);
             }
 
+            SceneManager.sceneLoaded += _self.AfterSceneLoad;
             SceneManager.LoadSceneAsync(scene);
         }
 
         private void AfterSceneLoad(Scene scene, LoadSceneMode mode)
         {
+            SceneManager.sceneLoaded -= _self.AfterSceneLoad;
             this.PrintLog("--- Starting scene " + scene.name + " ---");
 
-            SceneModuleLoader[] loader = FindObjectsByType<SceneModuleLoader>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-            foreach (ModuleBase module in loader.SelectMany(moduleLoader => moduleLoader.SceneModules))
+            SceneModuleLoader[] loaders = FindObjectsByType<SceneModuleLoader>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            foreach (SceneModuleLoader loader in loaders)
             {
-                AddModule(module, false);
+                //modules should not be destroyed
+                DontDestroyOnLoad(loader.gameObject);
+
+                foreach (ModuleBase module in loader.SceneModules)
+                {
+                    AddModule(module, false);
+                }
+
+                //destroy the loader component, it did it job
+                Destroy(loader);
             }
 
             this.PrintLog("Starting initialize routine");
