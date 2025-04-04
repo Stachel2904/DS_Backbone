@@ -245,10 +245,12 @@ namespace DivineSkies.Tools.Extensions
         /// <summary>
         /// Creates string from Content List with seperator (choose yourself how you want to stringify you values)
         /// </summary>
-        public static string ToContentString<T>(this IList<T> self, Func<T, string> toString, string seperator)
+        public static string ToContentString<T>(this IList<T> self, Func<T, string> toString = null, string seperator = ", ")
         {
             if (self.Count == 0)
                 return string.Empty;
+
+            toString ??= element => element.ToString();
 
             string result = toString(self[0]);
 
