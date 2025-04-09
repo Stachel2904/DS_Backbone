@@ -22,7 +22,7 @@ namespace DivineSkies.Modules.Config
 
         private string CreatePathString() => $@"Assets/Config/{_dataType}/{_fileName}." + _dataType switch
         {
-            ConfigDataType.JsonObject or ConfigDataType.JsonArray => ".json",
+            ConfigDataType.JsonObject or ConfigDataType.JsonArray => "json",
             _ => _dataType.ToString().ToLower()
         };
 

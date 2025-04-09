@@ -10,6 +10,9 @@ namespace DivineSkies.Modules.Core
     /// <typeparam name="TModuleHolder">The class, which holds your module mappings</typeparam>
     public abstract class BootstrapBase<TSceneName, TModuleHolder> : MonoBehaviour where TSceneName : struct, Enum where TModuleHolder : ModuleHolder<TSceneName>, new()
     {
+        [Tooltip("Enable this to start game from this scene")]
+        [SerializeField] private bool _isDebugStart;
+
         /// <summary>
         /// This scene will determine which scene will be loaded on <see cref="ModuleController.LoadDefaultScene"/>. Will also load this scene after booting if set.
         /// </summary>
@@ -17,6 +20,11 @@ namespace DivineSkies.Modules.Core
 
         private void Start()
         {
+            if (ModuleController.IsReady)
+            {
+                return;
+            }
+
             ModuleController controller = ModuleController.Create(new TModuleHolder());
 
             if (StartScene.HasValue)
@@ -29,8 +37,9 @@ namespace DivineSkies.Modules.Core
 
         private void OnConstantModulesInitialized()
         {
-            if (StartScene == null)
+            if (StartScene == null || _isDebugStart)
             {
+                ModuleController.OnExternalSceneLoaded();
                 OnStarted();
             }
             else

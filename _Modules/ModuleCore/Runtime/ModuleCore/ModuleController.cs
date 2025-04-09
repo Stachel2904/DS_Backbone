@@ -15,6 +15,8 @@ namespace DivineSkies.Modules
         /// </summary>
         public static event Action OnSceneChanged;
 
+        public static bool IsReady => _self != null && _holder != null;
+
         private static ModuleController _self;
         private static ModuleHolderBase _holder;
 
