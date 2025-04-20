@@ -4,9 +4,15 @@ namespace DivineSkies.Modules.Core
 {
     public class ExternalSceneLoader : MonoBehaviour
     {
-        private void Start()
+        private void Awake()
         {
-            ModuleController.OnExternalSceneLoaded();
+            //will be initialized from bootstrap
+            if (!ModuleController.IsReady)
+            {
+                return;
+            }
+
+            ModuleController.OnSceneLoaded();
         }
     }
 }

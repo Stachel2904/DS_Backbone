@@ -29,7 +29,6 @@ namespace DivineSkies.Modules
         /// </summary>
         protected virtual void OnCloseClicked()
         {
-            ModuleController.LoadDefaultScene();
         }
     }
 }

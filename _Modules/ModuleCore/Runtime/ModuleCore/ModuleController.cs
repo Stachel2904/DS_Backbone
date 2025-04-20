@@ -22,6 +22,7 @@ namespace DivineSkies.Modules
 
         private readonly Dictionary<Type, ModuleBase> _constantModules = new();
         private readonly Dictionary<Type, ModuleBase> _sceneModules = new();
+        private readonly Dictionary<Type, ModuleBase> _inactiveModules = new();
         private readonly List<ModuleBase> _uninitializedModules = new();
         private readonly List<SceneLoadData> sceneLoadData = new();
 
@@ -98,21 +99,21 @@ namespace DivineSkies.Modules
             return result;
         }
 
+        public static bool TryGet<T>(out T module) where T : ModuleBase
+        {
+            bool found = _self._constantModules.TryGetValue(typeof(T), out ModuleBase baseModule) || _self._sceneModules.TryGetValue(typeof(T), out baseModule);
+
+            module = baseModule as T;
+
+            return found && module != null;
+        }
+
         /// <summary>
         /// If you set load Data on scene load, you may retrieve it from here
         /// </summary>
         public static TLoadData GetLoadData<TLoadData>() where TLoadData : SceneLoadData => _self.sceneLoadData.OfType<TLoadData>().FirstOrDefault();
 
         #region module managing
-
-        /// <summary>
-        /// Use this to add a new module as scenemodule
-        /// </summary>
-        public static void AddSubModule<TModule>() where TModule : ModuleBase
-        {
-            _self.AddModule(typeof(TModule), false);
-        }
-
         private ModuleBase AddModule(Type moduleType, bool isConstant)
         {
             if (Has(moduleType))
@@ -121,12 +122,16 @@ namespace DivineSkies.Modules
                 return null;
             }
 
-            if (!_self.gameObject.TryGetComponent(moduleType, out Component comp) || comp is not ModuleBase result)
+            if (_self._inactiveModules.TryGetValue(moduleType, out ModuleBase result))
+            {
+                _inactiveModules.Remove(moduleType);
+                result.enabled = true;
+            }
+            else
             {
                 result = _self.gameObject.AddComponent(moduleType) as ModuleBase;
             }
 
-            result.enabled = true;
             AddModule(result, isConstant);
             return result;
         }
@@ -153,6 +158,7 @@ namespace DivineSkies.Modules
                 module.BeforeUnregister();
                 module.PrintLog("unregistered");
                 module.enabled = false;
+                _inactiveModules.Add(module.GetType(), module);
 
                 _sceneModules.Remove(module.GetType());
             }
@@ -193,57 +199,44 @@ namespace DivineSkies.Modules
         #endregion
 
         #region sceneloading
-        private string _defaultScene = "default";
-        internal void SetDefaultScene(string scene) => _defaultScene = scene;
-
-        /// <summary>
-        /// Loads the default start scene set in <see cref="BootstrapBase.StartScene"/>
-        /// </summary>
-        public static void LoadDefaultScene() => LoadScene(_self._defaultScene);
-
         /// <summary>
         /// Use this to load a scene
         /// </summary>
-        public static void LoadScene(Enum scene, params SceneLoadData[] loadData) => LoadScene(scene.ToString(), loadData);
+        public static void LoadScene(Enum scene, params SceneLoadData[] loadData) => _self.LoadScene(scene.ToString(), loadData);
 
-        internal static void LoadScene(string scene, params SceneLoadData[] loadData)
+        internal void LoadScene(string scene, params SceneLoadData[] loadData)
         {
-            _self.LoadSceneInternal(scene, loadData);
-        }
+            this.PrintLog("Starting to load scene " + scene);
 
-        internal static void OnExternalSceneLoaded()
-        {
-            Scene loadedScene = SceneManager.GetActiveScene();
-            _self.RemoveSceneModules();
-            _self.sceneLoadData.Clear();
-
-            foreach (Type moduleType in _holder.GetSceneModuleTypes(loadedScene.name))
-            {
-                _self.AddModule(moduleType, false);
-            }
-
-            _self.AfterSceneLoad(loadedScene, LoadSceneMode.Single);
-        }
-
-        private void LoadSceneInternal(string scene, params SceneLoadData[] loadData)
-        {
             RemoveSceneModules();
             sceneLoadData.Clear();
+
             sceneLoadData.AddRange(loadData);
 
-            foreach (Type moduleType in _holder.GetSceneModuleTypes(scene))
-            {
-                AddModule(moduleType, false);
-            }
-
-            SceneManager.sceneLoaded += _self.AfterSceneLoad;
+            SceneManager.sceneLoaded += InitializeLoadedScene;
             SceneManager.LoadSceneAsync(scene);
         }
 
-        private void AfterSceneLoad(Scene scene, LoadSceneMode mode)
+        internal static void OnSceneLoaded()
         {
-            SceneManager.sceneLoaded -= _self.AfterSceneLoad;
+            Scene loadedScene = SceneManager.GetActiveScene();
+            _self.PrintLog("Loaded scene " + loadedScene.name + " from external");
+
+            _self.RemoveSceneModules();
+            _self.sceneLoadData.Clear();
+
+            _self.InitializeLoadedScene(loadedScene, LoadSceneMode.Single);
+        }
+
+        private void InitializeLoadedScene(Scene scene, LoadSceneMode mode)
+        {
+            SceneManager.sceneLoaded -= _self.InitializeLoadedScene;
             this.PrintLog("--- Starting scene " + scene.name + " ---");
+
+            foreach (Type moduleType in _holder.GetSceneModuleTypes(scene.name))
+            {
+                AddModule(moduleType, false);
+            }
 
             SceneModuleLoader[] loaders = FindObjectsByType<SceneModuleLoader>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
             foreach (SceneModuleLoader loader in loaders)
@@ -261,10 +254,10 @@ namespace DivineSkies.Modules
             }
 
             this.PrintLog("Starting initialize routine");
-            StartCoroutine(OnSceneLoadedRoutine());
+            StartCoroutine(SceneInitializeRoutine());
         }
 
-        private IEnumerator OnSceneLoadedRoutine()
+        private IEnumerator SceneInitializeRoutine()
         {
             IEnumerator initRoutine = InitializeAllUninitialized(null);
             while (initRoutine.MoveNext())
