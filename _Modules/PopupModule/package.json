@@ -1,7 +1,7 @@
 {
   "name": "com.divineskies.popupmodule",
   "displayName": "DS Popup Module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Module to easily open and manage popups",
   "dependencies": {
     "com.divineskies.tools": "1.0.0",
