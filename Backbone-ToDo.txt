@@ -1,0 +1,5 @@
+Close Button sollte keine Pflicht sein
+Number Input Increase und Decrease sollten kein Pflicht sein
+Allgemein mal alle serializefields durchgehen und schauen, ob sie wirklich pflicht sein müssen und wenn ja, dann mit Warning, keiner Nullref
+Sheet protected OnLoad void
+PopupModule sollte eine Option haben, damit Popups aktive schließen
