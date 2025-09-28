@@ -1,7 +1,7 @@
 {
   "name": "com.divineskies.configsheetmodule",
   "displayName": "DS Config Sheet Module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Load CSV and Json Files and use them in game",
   "dependencies": {
     "com.divineskies.tools": "1.0.0",

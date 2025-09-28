@@ -9,7 +9,7 @@ namespace DivineSkies.Modules.Config
         JsonArray
     }
 
-    public abstract class ConfigSheetBase
+    public abstract class ConfigSheetBase : IConfigSheet
     {
         protected abstract string _fileName { get; }
         internal abstract ConfigDataType _dataType { get; }
