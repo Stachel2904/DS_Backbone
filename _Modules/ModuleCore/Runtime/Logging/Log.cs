@@ -1,5 +1,4 @@
-﻿using System;
-#if !UNITY_EDITOR
+﻿#if !UNITY_EDITOR
 using System.IO;
 #endif
 using UnityEngine;
@@ -13,16 +12,6 @@ namespace DivineSkies.Modules.Logging
     /// </summary>
     public class Log : ModuleBase<Log>
     {
-        /// <summary>
-        /// Use this to display ScreenMessages ingame
-        /// </summary>
-        public event Action<string> OnScreenMessagePrinted;
-
-        /// <summary>
-        /// Use this to display LogMessages ingame
-        /// </summary>
-        public event Action<string> OnLogMessagePrinted;
-
         /// <summary>
         /// Prints a message to unity console or text file if not in editor.
         /// </summary>
@@ -48,13 +37,17 @@ namespace DivineSkies.Modules.Logging
             sender = $"[{sender}] ";
             AddLogLine($"[{DateTime.Now:HH:mm:ss}] {type.ToString().ToUpper()}: " + sender + message);
 #endif
-            if(type is MessageType.ScreenMessage)
+            if (type is MessageType.Error)
             {
-                OnScreenMessagePrinted?.Invoke(message);
+                OnError(message);
+            }
+            else if (type is MessageType.LogMessage)
+            {
+                OnLogMessagePrinted(message);
             }
             else if (type is MessageType.ScreenMessage)
             {
-                OnLogMessagePrinted?.Invoke(message);
+                OnScreenMessagePrinted(message);
             }
         }
 
@@ -74,5 +67,20 @@ namespace DivineSkies.Modules.Logging
             writer.Close();
         }
 #endif
+
+        protected virtual void OnError(string message)
+        {
+
+        }
+
+        protected virtual void OnLogMessagePrinted(string message)
+        {
+
+        }
+
+        protected virtual void OnScreenMessagePrinted(string message)
+        {
+
+        }
     }
 }
