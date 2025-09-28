@@ -11,7 +11,13 @@ namespace DivineSkies.Modules.ResourceManagement
     {
         private readonly Dictionary<string, Object> _loadedResources = new();
         private readonly Dictionary<string, Component> _loadedPrefabs = new();
-        
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            Application.lowMemory += ClearCache;
+        }
+
         public override void OnSceneFullyLoaded()
         {
             ClearCache();
@@ -22,16 +28,22 @@ namespace DivineSkies.Modules.ResourceManagement
         /// </summary>
         public void ClearCache()
         {
+            long gcBytes = System.GC.GetTotalMemory(false);
             _loadedResources.Clear();
             _loadedPrefabs.Clear();
+
+            System.GC.Collect();
+            gcBytes -= System.GC.GetTotalMemory(false);
+
+            this.PrintLog($"Cleared Cache and saved {(gcBytes / 1024f / 1024):F2}MB of Memory");
         }
 
         /// <summary>
         /// Load a resource from "Resources/{typeof(T)}/{name}" (like sprites or audio files)
         /// </summary>
-        public T LoadResource<T>(string name) where T : Object
+        public T LoadResource<T>(string name, string subFolder = "") where T : Object
         {
-            string path = typeof(T).ToString().Split('.').Last() + "/" + name;
+            string path = typeof(T).ToString().Split('.').Last() + "/" + subFolder + name;
             if (!_loadedResources.TryGetValue(path, out Object resource))
             {
                 resource = Resources.Load<T>(path);
@@ -49,9 +61,10 @@ namespace DivineSkies.Modules.ResourceManagement
         /// <summary>
         /// Loads a prefab from "Resources/Prefabs/{localPath}/{typeof(T)}, creates a copy of it and attaches it to "parent"
         /// </summary>
-        public T LoadAndInstatiatePrefab<T>(Transform parent = null, string localPath = "") where T : Component
+        public T LoadAndInstatiatePrefab<T>(Transform parent = null, string localPath = "", string fileName = null) where T : Component
         {
-            string path = "Prefabs/" + localPath + typeof(T).ToString().Split('.').Last();
+            fileName ??= typeof(T).ToString().Split('.').Last();
+            string path = "Prefabs/" + localPath + fileName;
             if (!_loadedPrefabs.TryGetValue(path, out Component prefab))
             {
                 prefab = Resources.Load<T>(path);
