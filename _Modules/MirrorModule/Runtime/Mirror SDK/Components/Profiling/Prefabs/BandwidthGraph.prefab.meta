@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 793ac0a3167ba1c4cb9d46ad56eed7fb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Components/Profiling/Prefabs/BandwidthGraph.prefab
+  uploadId: 736156

@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: 9ee721489f958e948b9b59e3d40c09f3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Spartan
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Hosting/Edgegap/Editor/Fonts/Src/Spartan/Spartan-Regular.ttf
+  uploadId: 736156

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6cbe2cd3f24d27745b8939dd1f14b3ab
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/SimpleWeb/SimpleWeb/SimpleWebTransport.asmdef
+  uploadId: 736156

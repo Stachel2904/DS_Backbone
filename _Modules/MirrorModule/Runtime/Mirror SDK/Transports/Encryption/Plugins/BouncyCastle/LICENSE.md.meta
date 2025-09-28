@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 293ce36110b460545af6be8bc094579f
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/Encryption/Plugins/BouncyCastle/LICENSE.md
+  uploadId: 736156

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 743962600db642b4bba9549e809a962b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/NetworkScenePostProcess.cs
+  uploadId: 736156

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e7d35926f63b47249ae587d2e6eaabb2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Hosting/Edgegap/Models/SDK/ApiModelContainerlogs.cs
+  uploadId: 736156

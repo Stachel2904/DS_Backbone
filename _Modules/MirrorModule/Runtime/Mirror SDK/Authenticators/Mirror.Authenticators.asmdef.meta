@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d26da1e62037b2343b88e8c01f43bc9e
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Authenticators/Mirror.Authenticators.asmdef
+  uploadId: 736156

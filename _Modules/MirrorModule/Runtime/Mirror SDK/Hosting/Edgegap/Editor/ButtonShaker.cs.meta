@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: bda523983dadeef41b37076db1662b72
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Hosting/Edgegap/Editor/ButtonShaker.cs
+  uploadId: 736156

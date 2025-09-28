@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: c29cc9cfb1ef43c4db582fabfe65be02
+timeCreated: 1678507210
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Core/SnapshotInterpolation/SnapshotInterpolationSettings.cs
+  uploadId: 736156

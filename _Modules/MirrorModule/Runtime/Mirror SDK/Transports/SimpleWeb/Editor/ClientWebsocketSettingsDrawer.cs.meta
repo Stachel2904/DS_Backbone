@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 48f47e9ef4cf91849a8356c2e9178679
+timeCreated: 1700081340
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/SimpleWeb/Editor/ClientWebsocketSettingsDrawer.cs
+  uploadId: 736156

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 2d54552a52dc54843bc7c2abe0d0aa24
+timeCreated: 1701522748
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Hosting/Edgegap/Editor/Api/Models/DeploymentPortsData.cs
+  uploadId: 736156

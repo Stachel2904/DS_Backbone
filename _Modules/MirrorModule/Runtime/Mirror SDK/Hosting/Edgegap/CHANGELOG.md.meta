@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a88b430f6764db9478a6929d74007415
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Hosting/Edgegap/CHANGELOG.md
+  uploadId: 736156

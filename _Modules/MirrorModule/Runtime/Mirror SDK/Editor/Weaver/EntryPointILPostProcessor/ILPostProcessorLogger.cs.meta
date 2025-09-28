@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 699d7654bc54685459dd209addfc3de5
+timeCreated: 1629533154
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/Weaver/EntryPointILPostProcessor/ILPostProcessorLogger.cs
+  uploadId: 736156

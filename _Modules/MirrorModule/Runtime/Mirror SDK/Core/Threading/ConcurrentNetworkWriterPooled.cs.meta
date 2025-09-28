@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 6ea263e2792601b45adc4562585c7f5b
+timeCreated: 1691485295
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Core/Threading/ConcurrentNetworkWriterPooled.cs
+  uploadId: 736156

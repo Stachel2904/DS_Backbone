@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f386bdd86864bfc4c950595edeae92a1
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Components/Mirror.Components.asmdef
+  uploadId: 736156

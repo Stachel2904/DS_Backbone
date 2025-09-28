@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4df062c2a1e2c3f4eb917d7aa5d8551b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/Weaver/Processors/SyncObjectInitializer.cs
+  uploadId: 736156

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0a763c796854ea34aa11eb072f45b16a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/Weaver/EntryPoint/CompilationFinishedHook.cs
+  uploadId: 736156

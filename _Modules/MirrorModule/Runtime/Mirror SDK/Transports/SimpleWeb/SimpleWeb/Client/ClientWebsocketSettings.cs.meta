@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: c9eeb6378d8f9094fadec05584b8513a
+timeCreated: 1700425326
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/SimpleWeb/SimpleWeb/Client/ClientWebsocketSettings.cs
+  uploadId: 736156

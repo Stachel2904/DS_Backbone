@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 729025dbc2be87a4a952abdea7300989
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/Weaver/Processors/CommandProcessor.cs
+  uploadId: 736156

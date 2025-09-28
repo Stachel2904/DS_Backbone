@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3727f51f8a50a4b4b95fd0ca7873f1af
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/KCP/kcp2k/LICENSE.txt
+  uploadId: 736156

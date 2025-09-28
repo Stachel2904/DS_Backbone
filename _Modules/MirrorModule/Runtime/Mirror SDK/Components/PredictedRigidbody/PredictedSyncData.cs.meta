@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: dc0b4780dc77d134297a301b36b8eb05
+timeCreated: 1710387026
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Components/PredictedRigidbody/PredictedSyncData.cs
+  uploadId: 736156

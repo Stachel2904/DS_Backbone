@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 57685c0d08ae64a4396d5affcf1b2903
+timeCreated: 1629348618
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/Weaver/SyncVarAccessLists.cs
+  uploadId: 736156

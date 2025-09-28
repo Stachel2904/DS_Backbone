@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5e5acb4072ed4b64aa75375390968322
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/KCP/kcp2k/KCP.asmdef
+  uploadId: 736156

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9feb9907688c6904fa5f2e8f1b726761
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/Telepathy/Telepathy/ThreadFunctions.cs
+  uploadId: 736156

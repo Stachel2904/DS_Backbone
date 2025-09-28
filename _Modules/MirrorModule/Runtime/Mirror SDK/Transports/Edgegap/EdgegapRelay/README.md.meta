@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cd19fbf49fa0fcf4886b965f2736dafd
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/Edgegap/EdgegapRelay/README.md
+  uploadId: 736156

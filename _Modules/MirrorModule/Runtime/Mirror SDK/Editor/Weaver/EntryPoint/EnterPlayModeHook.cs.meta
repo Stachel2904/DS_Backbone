@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: caf52920e5be38d4caf8fa5ec351ca85
+timeCreated: 1628851346
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/Weaver/EntryPoint/EnterPlayModeHook.cs
+  uploadId: 736156

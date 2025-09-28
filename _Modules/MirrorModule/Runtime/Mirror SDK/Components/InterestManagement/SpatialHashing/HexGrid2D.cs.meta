@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1ebd30602e0c9ef4b82da1fda559dfb3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Components/InterestManagement/SpatialHashing/HexGrid2D.cs
+  uploadId: 736156

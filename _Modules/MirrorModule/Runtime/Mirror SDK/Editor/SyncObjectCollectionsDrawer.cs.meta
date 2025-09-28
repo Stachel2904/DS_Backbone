@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 146005ad9974a34438a723129171731b
+timeCreated: 1632556645
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/SyncObjectCollectionsDrawer.cs
+  uploadId: 736156

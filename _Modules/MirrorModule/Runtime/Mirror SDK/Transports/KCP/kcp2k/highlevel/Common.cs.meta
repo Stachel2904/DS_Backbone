@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 08c3202792132aa48a51c57225446099
+timeCreated: 1669135138
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/KCP/kcp2k/highlevel/Common.cs
+  uploadId: 736156

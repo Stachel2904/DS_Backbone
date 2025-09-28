@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 22a2f532811900c419221022d6016784
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/Encryption/Editor/EncryptionTransportEditor.asmdef
+  uploadId: 736156

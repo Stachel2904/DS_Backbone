@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ac701577d6fe6d34595d711d7b0b8c13
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/Weaver/Processors/ServerClientAttributeProcessor.cs
+  uploadId: 736156

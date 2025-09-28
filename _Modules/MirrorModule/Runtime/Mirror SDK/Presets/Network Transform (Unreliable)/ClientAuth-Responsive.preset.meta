@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ba6445e4e287e35418e9b3395ad00d02
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2655988077585873504
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Presets/Network Transform (Unreliable)/ClientAuth-Responsive.preset
+  uploadId: 736156

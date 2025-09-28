@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8c7d388f455cb1d40823c7252bb1761b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/SimpleWeb/SimpleWeb/Client/SimpleWebClient.cs
+  uploadId: 736156

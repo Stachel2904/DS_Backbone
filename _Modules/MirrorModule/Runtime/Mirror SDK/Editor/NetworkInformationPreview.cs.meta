@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4900c950c235c9d4498391611af4fb54
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/NetworkInformationPreview.cs
+  uploadId: 736156

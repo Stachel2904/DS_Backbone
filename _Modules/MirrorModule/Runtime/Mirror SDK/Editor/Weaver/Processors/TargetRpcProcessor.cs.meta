@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 61bc1e1352bba1e43813d2904f6ca841
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Editor/Weaver/Processors/TargetRpcProcessor.cs
+  uploadId: 736156

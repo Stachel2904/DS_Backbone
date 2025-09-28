@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5607262f058b03c4b9f428be1267f524
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/CompilerSymbols/Mirror.CompilerSymbols.asmdef
+  uploadId: 736156

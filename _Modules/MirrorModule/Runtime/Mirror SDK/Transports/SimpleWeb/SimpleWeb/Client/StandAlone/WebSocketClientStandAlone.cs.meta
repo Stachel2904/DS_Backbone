@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e6009c31f22cdfc4b889b08d61c2ac80
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/SimpleWeb/SimpleWeb/Client/StandAlone/WebSocketClientStandAlone.cs
+  uploadId: 736156

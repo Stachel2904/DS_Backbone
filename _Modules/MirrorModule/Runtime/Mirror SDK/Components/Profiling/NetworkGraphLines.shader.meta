@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 6679b8e4150052d40b2ed3f53b5c2787
+timeCreated: 1725809505
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Components/Profiling/NetworkGraphLines.shader
+  uploadId: 736156

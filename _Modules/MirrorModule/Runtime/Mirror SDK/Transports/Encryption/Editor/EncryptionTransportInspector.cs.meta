@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 66fc8430a87e20e4bbb3dce26df91a46
+timeCreated: 1708794004
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Transports/Encryption/Editor/EncryptionTransportInspector.cs
+  uploadId: 736156

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 217741d7721b7c34895a2e75520afc56
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Components/Profiling/StackedGraph.mat
+  uploadId: 736156

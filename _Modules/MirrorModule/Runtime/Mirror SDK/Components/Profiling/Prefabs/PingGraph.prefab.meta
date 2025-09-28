@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1dead48baaff62a42b5ab58ca3c8a4d5
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Components/Profiling/Prefabs/PingGraph.prefab
+  uploadId: 736156

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 883dc7237de32bc4abfb4b9bad628cf3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2655988077585873504
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 96.0.0
+  assetPath: Assets/Mirror/Presets/Network Transform (Reliable)/ServerAuth-Balanced.preset
+  uploadId: 736156
