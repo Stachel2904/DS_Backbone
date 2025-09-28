@@ -27,7 +27,12 @@ namespace DivineSkies.Modules.Popups
         /// <param name="title">The title to display in Popup</param>
         /// <param name="content">The content displayed in Popup</param>
         /// <param name="openAfterwards">Should instantly open after init?</param>
-        public virtual void Init(string title, string content, bool openAfterwards = true, Action onClosed = null)
+        public virtual void Init(string title, string content, Action onClosed = null) => Init(title, content, true, onClosed);
+
+        /// <param name="title">The title to display in Popup</param>
+        /// <param name="content">The content displayed in Popup</param>
+        /// <param name="openAfterwards">Should instantly open after init?</param>
+        public virtual void Init(string title, string content, bool openAfterwards, Action onClosed = null)
         {
             _txtTitle.text = title;
             _txtContent.text = content;

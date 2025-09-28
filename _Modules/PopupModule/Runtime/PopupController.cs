@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using DivineSkies.Tools.Extensions;
 using DivineSkies.Modules.ResourceManagement;
 using DivineSkies.Modules.Popups.Internal;
-using DivineSkies.Modules.Logging;
 using DivineSkies.Modules.ToolTip;
 
 namespace DivineSkies.Modules.Popups
@@ -48,13 +47,6 @@ namespace DivineSkies.Modules.Popups.Internal
             _faderBackground.localPosition = Vector3.zero;
             _faderBackground.localScale = Vector3.one;
             _faderBackground.gameObject.SetActive(false);
-
-            Log.Main.OnScreenMessagePrinted += DisplayLoggedMessage;
-        }
-
-        private void DisplayLoggedMessage(string message)
-        {
-            Popup.Create<NotificationPopup>(true).Init("Information", message);
         }
 
         public override void OnSceneFullyLoaded()
