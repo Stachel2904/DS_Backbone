@@ -231,16 +231,7 @@ namespace DivineSkies.Tools.Extensions
         /// <summary>
         /// Creates string from Content List with default seperator ", " (can also use tooltipstring of you want)
         /// </summary>
-        public static string ToContentString<T>(this IList<T> self, bool useTooltipString = false) where T : Enum => self.ToContentString(t =>
-        {
-            if (useTooltipString)
-            {
-                return t.ToTooltipString();
-            }
-
-            return t.ToString();
-        }, ", ");
-
+        public static string ToContentTooltipString<T>(this IList<T> self) where T : Enum => self.ToContentString(t => t.ToTooltipString());
 
         /// <summary>
         /// Creates string from Content List with seperator (choose yourself how you want to stringify you values)
