@@ -1,0 +1,20 @@
+{
+    "name": "DivineSkies.MiniGameModule",
+    "rootNamespace": "DivineSkies.Game",
+    "references": [
+        "GUID:326d67a062d8dd047a58bf1a70526d72",
+        "GUID:ca52d05b76b2a144c9e946dd79c41433",
+        "GUID:0e82c868858fc5a429134c38def620bb",
+        "GUID:24c21680250664a4dbb64abdf4228f75",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
