@@ -1,10 +1,13 @@
 {
   "name": "com.divineskies.minigamemodule",
   "displayName": "DS Mini Game Module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Module used for little games inside your game.",
   "dependencies": {
-    "com.divineskies.tools": "1.0.0"
+    "com.divineskies.tools": "1.0.0",
+    "com.divineskies.modulecore": "1.0.0",
+    "com.divineskies.resourcemanagementmodule": "1.0.0",
+    "com.divineskies.popupmodule": "1.0.0"
   },
   "relatedPackages": {},
   "repository": {

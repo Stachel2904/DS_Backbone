@@ -10,9 +10,9 @@
 
         protected virtual bool AutoStart => true;
 
-        public override void Initialize()
+        public override void OnSceneFullyLoaded()
         {
-            base.Initialize();
+            base.OnSceneFullyLoaded();
 
             Processor = CreateProcessor();
             Processor.SetController(this);
@@ -22,7 +22,7 @@
 
             if (AutoStart)
             {
-                Start();
+                StartGame();
             }
         }
 
@@ -36,7 +36,7 @@
         public abstract TProcessor CreateProcessor();
         public abstract TVisualization CreateVisualization();
 
-        public void Start()
+        public void StartGame()
         {
             Processor.OnStart();
         }
